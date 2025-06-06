@@ -3,7 +3,6 @@ import banner from "../assets/astrology-zodiac-signs-circle.png"
 import aboutImg from "../assets/LS20250602120759.png"
 import { NavLink } from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
-import { Navbar } from 'react-bootstrap'
 
 function Home() {
 
