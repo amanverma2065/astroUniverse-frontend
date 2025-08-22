@@ -76,13 +76,13 @@ function Home() {
       {/* Top Astrologers Section */}
       <div className="container mx-auto px-4 py-16">
         <h2 className="text-4xl font-semibold text-center mb-12">Our Top Astrologers</h2>
-        <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-6">
-          {(dataLoading ? (
-            <div className="flex justify-center items-center min-h-[100px]">
-              <Loader />
-            </div>
-          ) : (
-            allHomeAstrologer.slice(0, 4).map((astrologer) => (
+        {dataLoading ? (
+          <div className="flex justify-center items-center min-h-[150px]">
+            <Loader />
+          </div>
+        ) : (
+          <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-6">
+            {allHomeAstrologer.slice(0, 4).map((astrologer) => (
               <div key={astrologer} className="bg-gray-800 rounded-lg overflow-hidden">
                 <img
                   src={astrologer.profileImage}
@@ -98,9 +98,9 @@ function Home() {
                   </div>
                 </div>
               </div>
-            ))
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Footer */}
