@@ -78,7 +78,7 @@ function Home() {
         <h2 className="text-4xl font-semibold text-center mb-12">Our Top Astrologers</h2>
         <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-6">
           {(dataLoading ? (
-            <div className="flex justify-center items-center min-h-[150px]">
+            <div className="flex justify-center items-center min-h-[100px]">
               <Loader />
             </div>
           ) : (

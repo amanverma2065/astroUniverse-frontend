@@ -8,7 +8,7 @@ function HomeAstrologers() {
     return (
         <div className="w-full min-h-screen bg-gray-900">
             {(dataLoading ? (
-                <div className="flex justify-center items-center min-h-[100vh]">
+                <div className="flex justify-center items-center min-h-[100px]">
                     <Loader />
                 </div>
             ) : (
