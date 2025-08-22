@@ -3,10 +3,11 @@ import banner from "../assets/astrology-zodiac-signs-circle.png"
 import aboutImg from "../assets/LS20250602120759.png"
 import { NavLink } from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
+import Loader from '../components/Loader'
 
 function Home() {
 
-  const { navigate, user, astrologer, allHomeAstrologer } = useAppContext();
+  const { navigate, user, astrologer, allHomeAstrologer, dataLoading } = useAppContext();
 
   return (
     <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
@@ -76,22 +77,26 @@ function Home() {
       <div className="container mx-auto px-4 py-16">
         <h2 className="text-4xl font-semibold text-center mb-12">Our Top Astrologers</h2>
         <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-6">
-          {allHomeAstrologer.slice(0, 4).map((astrologer) => (
-            <div key={astrologer} className="bg-gray-800 rounded-lg overflow-hidden">
-              <img
-                src={astrologer.profileImage}
-                alt="AstrologerImage"
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-xl font-semibold">{astrologer.firstName + " " + astrologer.lastName}</h3>
-                <p className="text-gray-400">Vedic Astrology Expert</p>
-                <div className="flex items-center mt-2">
-                  <span>Experience:</span>
-                  <span className='ml-2'>{astrologer.experience} years</span>
+          {(dataLoading ? (
+            <Loader />
+          ) : (
+            allHomeAstrologer.slice(0, 4).map((astrologer) => (
+              <div key={astrologer} className="bg-gray-800 rounded-lg overflow-hidden">
+                <img
+                  src={astrologer.profileImage}
+                  alt="AstrologerImage"
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-4">
+                  <h3 className="text-xl font-semibold">{astrologer.firstName + " " + astrologer.lastName}</h3>
+                  <p className="text-gray-400">Vedic Astrology Expert</p>
+                  <div className="flex items-center mt-2">
+                    <span>Experience:</span>
+                    <span className='ml-2'>{astrologer.experience} years</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            ))
           ))}
         </div>
       </div>

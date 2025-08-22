@@ -16,6 +16,7 @@ export const AppContextProvider = ({ children }) => {
     const [astrologer, setAstrologer] = useState(null);
     const [role, setRole] = useState("user");
     const [loading, setLoading] = useState(true);
+    const [dataLoading, setDataLoading] = useState(true);
     const [allHomeAstrologer, setAllHomeAstrologer] = useState([]);
     const [currentSubscription, setCurrentSubscription] = useState([]);
     const [currentClients, setCurrentClients] = useState([]);
@@ -74,17 +75,18 @@ export const AppContextProvider = ({ children }) => {
 
     const fetchHomeAstrologer = async () => {
         try {
+            setDataLoading(true); // start loading
             const resData = await axios.get("/api/user/all-astrologer");
             console.log("ALL ASTROLOGER RES :", resData);
 
             if (resData.data.success) {
-                // toast.success("All Astrologers")
                 setAllHomeAstrologer(resData.data.data);
             }
         } catch (error) {
             console.error(error);
             toast.error(error.response?.data?.message || "Something went wrong.");
-            return;
+        } finally {
+            setDataLoading(false); // stop loading
         }
     }
 
@@ -139,7 +141,9 @@ export const AppContextProvider = ({ children }) => {
         selectedChatAstrologer,
         setSelectedChatAstrologer,
         selectedChatClient,
-        setSelectedChatClient
+        setSelectedChatClient,
+        dataLoading,
+        setDataLoading
     }
 
     return <AppContext.Provider value={values}>
